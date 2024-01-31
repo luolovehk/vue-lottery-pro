@@ -13,6 +13,7 @@
 ## 命令
 cd vue-lottery-pro
 yarn install
+127.0.0.1:8080
 - 启动: yarn run serve
 - 打包: yarn run build
 
