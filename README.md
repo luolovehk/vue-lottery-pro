@@ -11,6 +11,8 @@
 - 增加支持中奖作废重新抽奖功能
 
 ## 命令
+cd vue-lottery-pro
+yarn install
 - 启动: yarn run serve
 - 打包: yarn run build
 
