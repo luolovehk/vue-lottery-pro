@@ -3,7 +3,7 @@
     <lotteryStarfield/>
     <LotteryMusic/>
     <header class="lottery-header">
-      <img src="/logo.png" style="width: 40px;height: 40px;margin-right: 12px;" />
+      <!--<img src="/logo.png" style="width: 40px;height: 40px;margin-right: 12px;" /> -->
       <span>{{ headerTitle }}</span>
     </header>
     <div class="lottery-content">
@@ -25,7 +25,7 @@
   flex: none;
   height: 50px;
   width: 100%;
-  background-color: hsla(0,0%,100%,.3);
+ // background-color: hsla(0,0%,100%,.3);
   display: flex;
   justify-content: center;
   align-items: center;

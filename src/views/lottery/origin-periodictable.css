@@ -56,7 +56,8 @@ a {
 button {
   color: rgba(8, 20, 31, 0.75);
   background: transparent;
-  outline: 1px solid rgba(16, 30, 43, 0.75);
+  background-color: #ffd000;
+  outline: 1px solid #101e2bbf;
   border: 0px;
   padding: 5px 10px;
   cursor: pointer;

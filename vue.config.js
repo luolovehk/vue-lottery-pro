@@ -3,7 +3,7 @@ module.exports = {
     filenameHashing: true,
     chainWebpack: (config) => {
       config.plugin('html').tap((args) => {
-        args[0].title = '年终大抽奖';
+        args[0].title = '祝您中大奖！—— 0668.Live';
         return args;
       });
     },

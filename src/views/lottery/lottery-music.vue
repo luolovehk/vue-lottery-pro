@@ -5,23 +5,51 @@
       <div class="dropdown-content">
         <ul>
           <li>
+            <button id="setUserCount" @click="showUserCountDialog = true" style="background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">设置人数</button>
+          </li>
+          <li>
+            <button id="resetAwards" @click="resetPrizeData" style="margin-right:10px;background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">清空奖项</button>
+          </li>
+          <li>
+            <button id="add" @click="changeShowDialog" style="background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">添加奖项</button>
+          </li>
+          <li>
             <button id="tableShow" @click="tableShow" style="#3d3d34;background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">展示全部</button>
           </li>
           <li>
             <button id="winShow" @click="showAllWinUserPanel = true" style="#3d3d34;background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">展示中奖</button>
           </li>
           <li>
-            <button id="resetData" @click="resetData" style="background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">重置数据</button>
-          </li>
-          <li>
-            <button id="add" @click="changeShowDialog" style="background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">添加奖项</button>
-          </li>
-          <li>
-            <button id="resetAwards" @click="resetPrizeData" style="margin-right:10px;background-color:#3d3d34;color:#fff;">清空奖项</button>
+            <button id="resetData" @click="resetData" style="background-color:#3d3d34;color:#fff; solid #fff;">重置数据</button>
           </li>
         </ul>
       </div>
     </div>
+    
+    <!-- 添加设置人数的对话框 -->
+    <div>
+      <div class="global-mask" v-show="showUserCountDialog"></div>
+      <div class="global-dialog" v-show="showUserCountDialog">
+        <div class="title">设置参与人数</div>
+        <div class="content">
+          <div class="form">
+            <div class="item">
+              <span class="text">总人数：</span>
+              <span style="color: #666;">{{ totalUsersCount }}</span>
+            </div>
+            <div class="item">
+              <span class="text">设置人数：</span>
+              <input v-model="customUserCount" placeholder="输入要设置的人数" type="number" min="1" :max="totalUsersCount">
+            </div>
+          </div>
+        </div>
+        <div class="btn">
+          <button class="left" @click="showUserCountDialog = false">取消</button>
+          <button class="right" @click="confirmUserCount">确定</button>
+        </div>
+      </div>
+    </div>
+    
     <div class="lottery-music">
       <audio id="music" src="https://music.163.com/song/media/outer/url?id=4022088.mp3" class="music-item" loop></audio>
       <div id="musicBox" class="music-box" title="播放/暂停背景音乐">音乐</div>
@@ -48,10 +76,12 @@
               <span class="text">每次限抽：</span>
               <input v-model="prize.everyTimeGet" placeholder="设置每次抽奖的数量" type="number">
             </div>
+            <!--
             <div class="item">
               <span class="text">配图URL：</span>
               <input v-model="prize.img" placeholder="请输入配图URL">
             </div>
+            -->
           </div>
         </div>
         <div class="btn">
@@ -258,11 +288,11 @@ import { v4 as uuidv4 } from 'uuid'
 import { transform } from './3d-animate.js';
 import lotteryConfig from './lottery-config.js';
 import { Component, Vue } from "vue-property-decorator";
+import { totalUsersCount } from './lottery-config-users.js'; // 导入总人数
 
 @Component({
   components: {}
-})
-export default class LotteryMusic extends Vue {
+})export default class LotteryMusic extends Vue {
   data() {
     return {
       pageHeight: window.innerHeight,
@@ -314,8 +344,7 @@ export default class LotteryMusic extends Vue {
   resetPrize = false;
   showAllWinUserPanel = false;
   prizeList = lotteryConfig.prizeList;
-  prize =
-  {
+  prize = {
     count: undefined,
     countRemain: undefined,
     everyTimeGet: undefined,
@@ -325,7 +354,12 @@ export default class LotteryMusic extends Vue {
     id: "",
     cardListWin: [],
     round: 0
-  }
+  };
+  // 添加我们需要的属性定义
+  showUserCountDialog = false;
+  customUserCount: number | null = null;
+  totalUsersCount = totalUsersCount;
+  
   musicInit() {
     const music: any = document.querySelector("#music");
 
@@ -479,8 +513,31 @@ export default class LotteryMusic extends Vue {
   mounted () {
     this.musicInit();
   }
+  confirmUserCount() {
+    if (this.customUserCount && this.customUserCount > 0 && this.customUserCount <= this.totalUsersCount) {
+      sessionStorage.setItem('customUserCount', this.customUserCount.toString());
+      alert('人数设置成功，请刷新页面生效');
+      this.showUserCountDialog = false;
+    } else {
+      alert(`请输入1-${this.totalUsersCount}之间的数字`);
+    }
+  }
+  
+  // 重置人数设置
+  resetUserCount() {
+    if (confirm('是否要重置参与人数设置？')) {
+      sessionStorage.removeItem('customUserCount');
+      location.reload();
+    }
+  }
+  
   created () {
     window.addEventListener('resize', this.listenResize)
+    // 初始化自定义人数
+    const savedCount = sessionStorage.getItem('customUserCount');
+    if (savedCount) {
+      this.customUserCount = parseInt(savedCount, 10);
+    }
   }
   beforeDestroy () {
     window.removeEventListener('resize', this.listenResize)
