@@ -38,6 +38,7 @@ export default class Prize extends Vue {
   showBtn = false;
   everyTimeGet = 0;
   countRemain = 1;
+  // 找到 updateEveryTimeGet 方法并修改其相关的事件处理逻辑
   updateEveryTimeGet () {
     var slider = document.getElementById("mySlider");
     var tooltip = document.querySelector(".slider-tooltip");
@@ -45,18 +46,22 @@ export default class Prize extends Vue {
     this.everyTimeGet = currentPrize.everyTimeGet;
     this.countRemain = currentPrize.countRemain;
     tooltip.innerHTML = '单次抽奖个数:' + (this.everyTimeGet > this.countRemain ? this.countRemain : this.everyTimeGet);
+    
+    // 修改前 - 只在鼠标事件时显示提示
+    // slider.onmouseenter = function() {
+    //   tooltip.style.visibility = "visible";
+    // }
+    // slider.onmouseleave = function() {
+    //   tooltip.style.visibility = "hidden";
+    // }
+    
+    // 修改后 - 移除鼠标事件，始终显示提示
+    tooltip.style.visibility = "visible";
+    tooltip.style.display = "block";
+    
+    // 保留滑块值改变时的更新逻辑
     slider.oninput = function() {
       tooltip.innerHTML = '单次抽奖个数:' + this.value;
-    }
-    // slider.onmousemove = function() {
-    //   tooltip.style.bottom = 40 + "px";
-    //   tooltip.style.width = 150 + "px";
-    // }
-    slider.onmouseenter = function() {
-      tooltip.style.visibility = "visible";
-    }
-    slider.onmouseleave = function() {
-      tooltip.style.visibility = "hidden";
     }
   }
   changeEveryTimeGet () {
@@ -160,7 +165,7 @@ export default class Prize extends Vue {
   font-size: 14px;
   z-index: 99;
   width: 150px;
-  bottom: 35px;
+  bottom: 30px;
   left: 150px;
 }
 

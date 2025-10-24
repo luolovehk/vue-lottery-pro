@@ -3,9 +3,9 @@ import cookies from 'vue-cookies'
 const lotteryConfig = {
 	prizeList: [
 		{
-			count: 20,
-			countRemain: 1,
-			everyTimeGet: 1,
+			count: 200,
+			countRemain: 200,
+			everyTimeGet: 20,
 			name: '一等奖·示例',
 			detail: 'Apple watch S9',
 			id: '一等奖Apple',
@@ -16,7 +16,7 @@ const lotteryConfig = {
 		},
 		{
 			count: 10,
-			countRemain: 1,
+			countRemain: 10,
 			everyTimeGet: 1,
 			name: '二等奖·示例',
 			detail: '大疆 便携摄像机Pocket2',
