@@ -47,7 +47,7 @@
               <img :src='prizeDetail.img' style="width: 360px;margin:0 auto">
             </div>
             <div class="item">
-              <div class="text" style="margin: 0 auto">示意图，请以实物为准</div>
+              <div class="text" style="margin: 0 auto;font-size: 22px;">0668.Live</div>
             </div>
           </div>
         </div>

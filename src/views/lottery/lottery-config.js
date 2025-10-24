@@ -6,9 +6,8 @@ const lotteryConfig = {
 			count: 20,
 			countRemain: 1,
 			everyTimeGet: 1,
-			name: '一等奖·甲',
+			name: '一等奖·示例',
 			detail: 'Apple watch S9',
-			img: 'https://img11.360buyimg.com/n1/s450x450_jfs/t1/106800/30/44433/27003/6500da41F3fe2d6fb/742378431a00d556.jpg',
 			id: '一等奖Apple',
 			level: 8,
 			cardListWin: [],
@@ -19,9 +18,8 @@ const lotteryConfig = {
 			count: 10,
 			countRemain: 1,
 			everyTimeGet: 1,
-			name: '二等奖·甲',
+			name: '二等奖·示例',
 			detail: '大疆 便携摄像机Pocket2',
-			img: 'https://img14.360buyimg.com/n1/s450x450_jfs/t1/216966/30/4233/38702/618e44c0E2b08adde/299e5f17017c8cab.jpg',
 			id: '二等奖大疆',
 			level: 7,
 			cardListWin: [],
@@ -32,9 +30,8 @@ const lotteryConfig = {
 			count: 3,
 			countRemain: 3,
 			everyTimeGet: 3,
-			name: '三等奖·甲',
+			name: '三等奖·示例',
 			detail: '机械键盘',
-			img: 'https://img10.360buyimg.com/n1/s450x450_jfs/t1/127916/3/37937/98683/64c14c8eFec9bb8b6/61dd79c934bbc1a7.jpg',
 			id: '三等奖机械键盘',
 			level: 6,
 			cardListWin: [],
@@ -42,7 +39,7 @@ const lotteryConfig = {
 			isShowTime: false,
 		}
 	], // 奖品列表
-	headerTitle: '0668.Live 祝您中大奖！', // 抽奖标题
+	headerTitle: '祝您中大奖！', // 抽奖标题
 	currentPrize: null, // 当前抽奖的奖品
 	colCount,
 	rowCount, // table模式下行列数
@@ -105,5 +102,8 @@ lotteryConfig.clearLocalStorage = () => {
 // 初始化奖项配置缓存
 cookies.set('prize_list', JSON.stringify(lotteryConfig.prizeList))
 cookies.set('header_title', lotteryConfig.headerTitle)
+// 在文件末尾添加初始化调用
+lotteryConfig.getLocalStorage();
 console.log('lotteryConfig', lotteryConfig);
+
 export default lotteryConfig;
