@@ -19,7 +19,7 @@ html, body {
 }
 #app {
   color: #2c3e50;
-  background-image: url('/background.png');
+  background-image: url('/background.jpg');
   background-size: 100% 100%;
   height: 100%;
   width: 100%;

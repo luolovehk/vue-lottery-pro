@@ -35,7 +35,7 @@
           <div class="form">
             <div class="item">
               <span class="text">总人数：</span>
-              <span style="color: #666;">{{ totalUsersCount }}</span>
+              <span style="color: #666;">{{ totalUsersCount }} （默认上限人数600人，如有需求请联系管理员）</span>
             </div>
             <div class="item">
               <span class="text">设置人数：</span>
@@ -196,7 +196,6 @@
       .item {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         margin-bottom: 1rem;
         line-height: 40px;
         input {
@@ -235,7 +234,7 @@
   left: 30px;
   top: calc(50px + 30px);
   border-radius: 10px;
-  background-color: rgb(171, 59, 58);
+  background-color: rgb(59, 59, 52);
   z-index: 999;
   display: flex;
   flex-direction: column;
@@ -270,12 +269,13 @@
     .prize-win-user {
       margin: 26px 0px;
       .prize-win-user-name {
-        font-size: 42px;
-        color: rgba(255, 255, 0,0.75);
+        font-size: 38px;
+        color: #ffd000;
         font-weight: 600;
         width: 100px;
         display: inline-block;
         text-align: center;
+        line-height: 1.2;
       }
     }
   }
@@ -516,7 +516,8 @@ import { totalUsersCount } from './lottery-config-users.js'; // 导入总人数
   confirmUserCount() {
     if (this.customUserCount && this.customUserCount > 0 && this.customUserCount <= this.totalUsersCount) {
       sessionStorage.setItem('customUserCount', this.customUserCount.toString());
-      alert('人数设置成功，请刷新页面生效');
+      // 移除手动刷新提示，添加自动刷新
+      location.reload();
       this.showUserCountDialog = false;
     } else {
       alert(`请输入1-${this.totalUsersCount}之间的数字`);

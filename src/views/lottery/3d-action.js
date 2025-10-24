@@ -11,16 +11,27 @@ function cardFlyAnimation(cardIndexList) {
     const locates = [];
     const duration = 600;
 
-    const selectRowCount = Math.round(selectObject.length / 10) === 0 ? 1 : Math.round(selectObject.length / 10); // 行数 根据数量动态生成对应行数
-    const cardPadding = 30;
+    // 修改：根据卡片数量动态调整每行显示的卡片数量
+    let colNum = 10; // 默认10列
     const objectLength = selectObject.length;
+    
+    // 根据卡片数量调整列数
+    if (objectLength >= 100) {
+      colNum = 20; // 100个以上显示20列
+    } else if (objectLength >= 50) {
+      colNum = 10; // 50-99个显示15列
+    }
+    
+    const selectRowCount = Math.ceil(objectLength / colNum); // 行数 根据数量和列数计算
+    const cardPadding = 30;
+    
     const canvasSize = {
-      width: (objectLength / selectRowCount + 1) * (cardSize.width + cardPadding),
+      width: (colNum + 1) * (cardSize.width + cardPadding),
       height: (selectRowCount + 1) * (cardSize.height + cardPadding)
     }
 
     // 计算中奖卡片位置
-    const everyRowCount = Math.ceil(objectLength / selectRowCount);
+    const everyRowCount = colNum;
     for (let i = 0; i < selectRowCount; i++) {
       const currentObjects = selectObject.slice(i * everyRowCount, (i+1) * everyRowCount);
       for (let j = 0; j < currentObjects.length; j++) {
@@ -31,9 +42,9 @@ function cardFlyAnimation(cardIndexList) {
       }
     }
 
-    // 运行卡片动画
+    // 运行卡片动画 - 以下代码保持不变
     selectObject.forEach((object, index) => {
-      const objectsWidth = (cardSize.width + cardPadding) * (selectObject.length / selectRowCount) - cardPadding;
+      const objectsWidth = (cardSize.width + cardPadding) * colNum - cardPadding;
       const objectsHeight = (cardSize.height + cardPadding) * selectRowCount - cardPadding;
       const cardDistZ = setCardDist(objectsWidth, objectsHeight);
 
@@ -42,7 +53,7 @@ function cardFlyAnimation(cardIndexList) {
           {
             x: locates[index].x,
             y: locates[index].y,
-            z: cardDistZ // z: 2200 // 原始默认
+            z: cardDistZ
           },
           Math.random() * duration + duration
         )

@@ -4,14 +4,14 @@
       <ul class="prize-list">
         <li class="prize-item"
           v-for="(item, index) in prizeList" :key="index"
-          style="color: #F9BF45;background-color: #AB3B3A;"
+          style="color: #ffd000;background-color: #3b3b34;"
           :class="{shine: index === currentPrizeIndex, done: index === donePrizeIndex}"
           @click="selectPrize($event, item, index)">
           <div class="prize-item-left" v-if="isShowDetail || item.isShowTime">
             <img :src='item.img' @click="changeShowPrizeItem(item)">
           </div>
           <div class="prize-item-right">
-            <div class="prize-item-title" :style="!isShowDetail && !item.isShowTime ? 'font-size:40px;text-align:center;width:100%;' : ''">
+            <div class="prize-item-title" :style="!isShowDetail && !item.isShowTime ? 'font-size:32px;text-align:center;width:100%;' : ''">
               {{ item.name }}
             </div>
             <div class="prize-item-name" v-if="isShowDetail || item.isShowTime">{{ item.detail }}</div>
@@ -47,7 +47,7 @@
               <img :src='prizeDetail.img' style="width: 360px;margin:0 auto">
             </div>
             <div class="item">
-              <div class="text" style="margin: 0 auto;font-size: 22px;">0668.Live</div>
+              <div class="text" style="margin: 0 auto;font-size: 18px; color: #c3c3c3;">0668.Live</div>
             </div>
           </div>
         </div>
