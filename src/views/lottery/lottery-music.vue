@@ -270,10 +270,10 @@
     .prize-win-user {
       margin: 26px 0px;
       .prize-win-user-name {
-        font-size: 32px;
+        font-size: 42px;
         color: rgba(255, 255, 0,0.75);
         font-weight: 600;
-        width: 80px;
+        width: 100px;
         display: inline-block;
         text-align: center;
       }
