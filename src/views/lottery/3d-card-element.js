@@ -26,13 +26,13 @@ const create3DCard = function(_objects = objects) {
     // element.appendChild(imgEle);
 
     const symbol = document.createElement( 'div' );
-    symbol.className = 'symbol';
-    symbol.textContent = currentCardData.name;
+    symbol.className = ' symbol';
+    symbol.textContent = currentCardData.id;
     element.appendChild( symbol );
 
     const details = document.createElement( 'div' );
     details.className = 'details';
-    details.innerHTML = currentCardData.id;
+    details.innerHTML = currentCardData.name;
     element.appendChild( details );
 
     const objectCSS = new CSS3DObject( element );

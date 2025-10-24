@@ -9,8 +9,8 @@
         <button id="grid" v-show="showBtn">GRID</button>
       </div>
       <div style="display:flex;margin-left:30px;">
-        <button id="lotteryStart" v-if="!isStart" @click="lotteryStart" style="background-color:#005CAF;color:#fff;font-size:22px;font-weight:600;">开始抽奖</button>
-        <button id="lotteryStop" v-else @click="lotteryStop" style="background-color:#005CAF;color:#fff;font-size:22px;font-weight:600;">停止抽奖</button>
+        <button id="lotteryStart" v-if="!isStart" @click="lotteryStart" style="background-color:#737373;color:#fff;font-size:22px;font-weight:600;">开始抽奖</button>
+        <button id="lotteryStop" v-else @click="lotteryStop" style="background-color:#737373;color:#fff;font-size:22px;font-weight:600;">停止抽奖</button>
         <div class="slider-container" style="margin-top: 6px;">
           <input type="range" :min="countRemain > 1 ? 1 : 0" :max="countRemain" v-model="everyTimeGet" class="slider" id="mySlider" style="margin-left:12px;" @change="changeEveryTimeGet">
           <span class="slider-tooltip"></span>

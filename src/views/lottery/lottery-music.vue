@@ -5,19 +5,19 @@
       <div class="dropdown-content">
         <ul>
           <li>
-            <button id="tableShow" @click="tableShow" style="#005CAF;background-color:#005CAF;color:#fff;border-bottom: 1px solid #fff;">展示全部</button>
+            <button id="tableShow" @click="tableShow" style="#3d3d34;background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">展示全部</button>
           </li>
           <li>
-            <button id="winShow" @click="showAllWinUserPanel = true" style="#005CAF;background-color:#005CAF;color:#fff;border-bottom: 1px solid #fff;">展示中奖</button>
+            <button id="winShow" @click="showAllWinUserPanel = true" style="#3d3d34;background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">展示中奖</button>
           </li>
           <li>
-            <button id="resetData" @click="resetData" style="background-color:#005CAF;color:#fff;border-bottom: 1px solid #fff;">重置数据</button>
+            <button id="resetData" @click="resetData" style="background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">重置数据</button>
           </li>
           <li>
-            <button id="add" @click="changeShowDialog" style="background-color:#005CAF;color:#fff;border-bottom: 1px solid #fff;">添加奖项</button>
+            <button id="add" @click="changeShowDialog" style="background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">添加奖项</button>
           </li>
           <li>
-            <button id="resetAwards" @click="resetPrizeData" style="margin-right:10px;background-color:#005CAF;color:#fff;">清空奖项</button>
+            <button id="resetAwards" @click="resetPrizeData" style="margin-right:10px;background-color:#3d3d34;color:#fff;">清空奖项</button>
           </li>
         </ul>
       </div>
@@ -72,7 +72,7 @@
             <!-- 每十个换行 -->
             <div class="prize-win-user-name-wrap" v-for="(arr, arrIndex) in getRenderArr(item.cardListWin)" :key="arrIndex">
               <span class="prize-win-user-name" v-for="(user, userIndex) in arr" :key="userIndex">
-                {{ user.name }}
+                {{ user.id }}
               </span>
               <br />
             </div>
@@ -232,15 +232,16 @@
     margin: 0 50px;
     margin-top: 20px;
     .prize-name {
-      font-size: 36px;
+      font-size: 22px;
       font-weight: 800;
       margin-right: 12px;
       margin-bottom: 12px;
     }
     .prize-win-user {
-      margin: 16px 0px;
+      margin: 26px 0px;
       .prize-win-user-name {
-        font-size: 22px;
+        font-size: 32px;
+        color: rgba(255, 255, 0,0.75);
         font-weight: 600;
         width: 80px;
         display: inline-block;
