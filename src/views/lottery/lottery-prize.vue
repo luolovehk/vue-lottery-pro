@@ -243,7 +243,7 @@ export default class Prize extends Vue {
   left: calc(50% - 265px);
   top: 80px;
   z-index: 1000;
-  width: 550px;
+  width: 45%;
   background: #FFFFFF;
   border-radius: 15px;
   overflow: hidden;
@@ -258,7 +258,7 @@ export default class Prize extends Vue {
   .content {
     .text {
       font-size: 32px;
-      text-align: center;
+     // text-align: center;
     }
     .form {
       padding: 0 40px;

@@ -11,41 +11,48 @@ function cardFlyAnimation(cardIndexList) {
     const locates = [];
     const duration = 600;
 
-    // 修改：根据卡片数量动态调整每行显示的卡片数量
-    let colNum = 10; // 默认10列
+    // 计算列数和行数 - 动态调整布局
+    let colNum;
     const objectLength = selectObject.length;
     
-    // 根据卡片数量调整列数
-    if (objectLength >= 100) {
-      colNum = 20; // 100个以上显示20列
-    } else if (objectLength >= 50) {
-      colNum = 10; // 50-99个显示15列
+    // 根据不同数量设置不同列数
+    if (objectLength <= 5) {
+      colNum = 3;
+    } else if (objectLength <= 20) {
+      colNum = 5;
+    } else if (objectLength > 50) {
+      colNum = 15;
+    } else {
+      colNum = 10;
     }
     
-    const selectRowCount = Math.ceil(objectLength / colNum); // 行数 根据数量和列数计算
+    const selectRowCount = Math.ceil(objectLength / colNum);
     const cardPadding = 30;
     
+    // 计算画布大小
     const canvasSize = {
-      width: (colNum + 1) * (cardSize.width + cardPadding),
-      height: (selectRowCount + 1) * (cardSize.height + cardPadding)
+      width: colNum * (cardSize.width + cardPadding) + cardPadding,
+      height: selectRowCount * (cardSize.height + cardPadding) + cardPadding
     }
 
-    // 计算中奖卡片位置
-    const everyRowCount = colNum;
+    // 计算中奖卡片位置 - 确保居中显示
     for (let i = 0; i < selectRowCount; i++) {
-      const currentObjects = selectObject.slice(i * everyRowCount, (i+1) * everyRowCount);
-      for (let j = 0; j < currentObjects.length; j++) {
+      const currentRowCount = Math.min(colNum, objectLength - i * colNum);
+      // 计算当前行的偏移量，使整行居中
+      const rowOffset = (colNum - currentRowCount) * (cardSize.width + cardPadding) / 2;
+      
+      for (let j = 0; j < currentRowCount; j++) {
         locates.push({
-          x: ((cardSize.width + cardPadding) * (j + 1)) - (canvasSize.width / 2),
-          y: -(cardSize.height + cardPadding) * (i + 1) + (canvasSize.height / 2)
+          x: ((cardSize.width + cardPadding) * j) + rowOffset - (canvasSize.width / 2) + (cardSize.width + cardPadding) / 2,
+          y: -((cardSize.height + cardPadding) * i) + (canvasSize.height / 2) - (cardSize.height + cardPadding) / 2
         });
       }
     }
 
-    // 运行卡片动画 - 以下代码保持不变
+    // 运行卡片动画 - 设置Z轴位置使其在球体中心
     selectObject.forEach((object, index) => {
-      const objectsWidth = (cardSize.width + cardPadding) * colNum - cardPadding;
-      const objectsHeight = (cardSize.height + cardPadding) * selectRowCount - cardPadding;
+      const objectsWidth = colNum * (cardSize.width + cardPadding) - cardPadding;
+      const objectsHeight = selectRowCount * (cardSize.height + cardPadding) - cardPadding;
       const cardDistZ = setCardDist(objectsWidth, objectsHeight);
 
       new TWEEN.Tween(object.position)
@@ -53,7 +60,7 @@ function cardFlyAnimation(cardIndexList) {
           {
             x: locates[index].x,
             y: locates[index].y,
-            z: cardDistZ
+            z: cardDistZ // 这个Z轴位置会让卡片在球体中心位置显示
           },
           Math.random() * duration + duration
         )

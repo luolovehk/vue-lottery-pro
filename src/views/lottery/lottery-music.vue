@@ -96,7 +96,7 @@
         <div class="prize-win-item" v-for="(item, index) in prizeList" :key="index">
           <div style="display:flex;">
             <div class="prize-name">{{ item.name }}</div>
-            <button @click="resetPrizeItem(item)" style="height:24px;line-height:24px;font-size:13px;padding: 0px 6px;">重新再来</button>
+            <button @click="resetPrizeItem(item)" style="background-color: rgb(59, 59, 52); height:24px;line-height:24px;font-size:13px;padding: 0px 6px;">重新再抽</button>
           </div>
           <div class="prize-win-user">
             <!-- 每十个换行 -->
