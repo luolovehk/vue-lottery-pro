@@ -4,6 +4,19 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'App',
+  mounted() {
+    // 动态引入Font Awesome图标库
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+    document.head.appendChild(link);
+  }
+}
+</script>
+
 <style lang="scss">
 * {
   margin: 0;

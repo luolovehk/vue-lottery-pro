@@ -8,7 +8,10 @@
           :class="{shine: index === currentPrizeIndex, done: index === donePrizeIndex}"
           @click="selectPrize($event, item, index)">
           <div class="prize-item-left" v-if="isShowDetail || item.isShowTime">
-            <img :src='item.img' @click="changeShowPrizeItem(item)">
+            <!-- 用统一的礼物图标替换图片 -->
+            <div class="prize-icon">
+              <i class="fas fa-gift"></i>
+            </div>
           </div>
           <div class="prize-item-right">
             <div class="prize-item-title" :style="!isShowDetail && !item.isShowTime ? 'font-size:32px;text-align:center;width:100%;' : ''">
@@ -219,6 +222,26 @@ export default class Prize extends Vue {
 
 <style lang="scss" scoped>
 @import './lottery-prize.scss';
+// 添加图标样式
+.prize-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ffecb4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #FF6B6B;
+}
+
+.prize-icon-large {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  color: #FF6B6B;
+}
 .global-mask {
   position: fixed;
   top: 0;
@@ -250,7 +273,7 @@ export default class Prize extends Vue {
   padding: 12px;
   .title {
     font-size: 36px;
-    font-weight: 500;
+    font-weight: bold;
     text-align: center;
     line-height: 100px;
     padding-bottom: 10px;

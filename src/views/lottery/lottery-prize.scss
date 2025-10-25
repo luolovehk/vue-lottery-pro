@@ -36,13 +36,14 @@
   .prize-item-left {
     width: 60px;
     margin-right: 10px;
-
-    img {
+    
+    // 移除图片样式
+    /* img {
       width: 60px;
       height: 60px;
       border-radius: 50%;
       display: block;
-    }
+    } */
   }
 
   .prize-item-right {

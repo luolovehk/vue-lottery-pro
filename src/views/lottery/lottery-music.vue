@@ -76,12 +76,7 @@
               <span class="text">每次限抽：</span>
               <input v-model="prize.everyTimeGet" placeholder="设置每次抽奖的数量" type="number">
             </div>
-            <!--
-            <div class="item">
-              <span class="text">配图URL：</span>
-              <input v-model="prize.img" placeholder="请输入配图URL">
-            </div>
-            -->
+            <!-- 移除图片URL字段 -->
           </div>
         </div>
         <div class="btn">
@@ -475,6 +470,7 @@ import { totalUsersCount } from './lottery-config-users.js'; // 导入总人数
     this.pageHeight = window.innerHeight
     this.ops.scrollPanel.maxHeight = window.innerHeight
   }
+  // 假设这是原有的add方法
   add () {
     if (!this.prize.count || !this.prize.everyTimeGet || !this.prize.name || !this.prize.detail) {
       alert('除了配图URL，其他不能为空')
@@ -483,6 +479,16 @@ import { totalUsersCount } from './lottery-config-users.js'; // 导入总人数
       alert('每次抽奖数量不能大于奖项总数量')
       return
     }
+    
+    // 添加检查：计算所有奖项总数之和是否超过参与总人数
+    const totalPrizeCount = this.prizeList.reduce((sum, item) => sum + item.count, 0) + Number(this.prize.count)
+    const totalUserCount = lotteryConfig.cardList.length
+    
+    if (totalPrizeCount > totalUserCount) {
+      alert(`奖项总数不能超过参与总人数(${totalUserCount})，当前已设置${totalPrizeCount - Number(this.prize.count)}个奖项，还可添加${totalUserCount - (totalPrizeCount - Number(this.prize.count))}个奖项`)
+      return
+    }
+    
     this.prize.count = Number(this.prize.count)
     this.prize.everyTimeGet = Number(this.prize.everyTimeGet)
     this.prize.countRemain = this.prize.count

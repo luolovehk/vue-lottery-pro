@@ -3,6 +3,18 @@ import cookies from 'vue-cookies'
 const lotteryConfig = {
 	prizeList: [
 		{
+			count: 39,
+			countRemain: 39,
+			everyTimeGet: 39,
+			name: '特别奖·示例',
+			detail: '徽章',
+			id: '特别奖徽章',
+			level: 1,
+			cardListWin: [],
+			round: 0,
+			isShowTime: false,
+		},
+		{
 			count: 200,
 			countRemain: 200,
 			everyTimeGet: 20,
@@ -39,7 +51,7 @@ const lotteryConfig = {
 			isShowTime: false,
 		}
 	], // 奖品列表
-	headerTitle: '祝您中大奖！', // 抽奖标题
+	headerTitle: '', // 抽奖标题
 	currentPrize: null, // 当前抽奖的奖品
 	colCount,
 	rowCount, // table模式下行列数
