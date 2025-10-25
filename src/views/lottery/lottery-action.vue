@@ -135,8 +135,8 @@ export default class Prize extends Vue {
   position: relative;
 }
 .slider {
-  width: 150px;
-  margin-top: 5px;
+  width: 130px;
+  margin-top: 25px;
 }
 
 .slider::-webkit-slider-thumb {
@@ -160,11 +160,10 @@ export default class Prize extends Vue {
   visibility: hidden;
   background-color: #333;
   color: #fff;
-  padding: 5px;
   border-radius: 5px;
   font-size: 14px;
   z-index: 99;
-  width: 150px;
+  width: 130px;
   bottom: 30px;
   left: 150px;
 }

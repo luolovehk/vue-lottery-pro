@@ -1,9 +1,10 @@
 <template>
   <div class="lottery-wrap">
-    <lotteryStarfield/>
+    <!-- 注释掉星空背景组件 -->
+    <!-- <lotteryStarfield/> -->
     <LotteryMusic/>
     <header class="lottery-header">
-      <!--<img src="/logo.png" style="width: 40px;height: 40px;margin-right: 12px;" /> -->
+     <!-- <img src="/favicon.ico" style="width: 40px;height: 40px;margin-right: 12px;" /> -->
       <span>{{ headerTitle }}</span>
     </header>
     <div class="lottery-content">
@@ -12,6 +13,27 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import Lottery3d from './lottery-3d.vue';
+import Prize from './lottery-prize.vue';
+import LotteryMusic from './lottery-music.vue';
+// 注释掉星空背景组件的导入
+// import lotteryStarfield from './lottery-starfield.vue';
+import lotteryConfig from './lottery-config.js';
+
+@Component({
+  components: {
+    Lottery3d, Prize, LotteryMusic
+    // 注释掉星空背景组件的注册
+    // lotteryStarfield
+  }
+})
+export default class Lottery extends Vue {
+  headerTitle = lotteryConfig.headerTitle;
+}
+</script>
 
 <style lang="scss" scoped>
 .lottery-wrap {
@@ -39,21 +61,3 @@
   display: flex;
 }
 </style>
-
-<script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import Lottery3d from './lottery-3d.vue';
-import Prize from './lottery-prize.vue';
-import LotteryMusic from './lottery-music.vue';
-import lotteryStarfield from './lottery-starfield.vue';
-import lotteryConfig from './lottery-config.js';
-
-@Component({
-  components: {
-    Lottery3d, Prize, LotteryMusic, lotteryStarfield
-  }
-})
-export default class Lottery extends Vue {
-  headerTitle = lotteryConfig.headerTitle;
-}
-</script>

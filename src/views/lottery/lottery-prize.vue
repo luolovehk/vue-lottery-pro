@@ -50,7 +50,7 @@
               <img :src='prizeDetail.img' style="width: 360px;margin:0 auto">
             </div>
             <div class="item">
-              <div class="text" style="margin: 0 auto;font-size: 18px; color: #c3c3c3;">0668.Live</div>
+              <div class="text" style="margin: 0 auto;font-size: 18px; color: #ffd000;">0668.Live</div>
             </div>
           </div>
         </div>
@@ -267,7 +267,7 @@ export default class Prize extends Vue {
   top: 80px;
   z-index: 1000;
   width: 45%;
-  background: #FFFFFF;
+  background: #ffecb4;
   border-radius: 15px;
   overflow: hidden;
   padding: 12px;

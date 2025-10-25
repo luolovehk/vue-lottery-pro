@@ -69,7 +69,7 @@
               <input v-model="prize.detail" placeholder="设置奖品的名称，最长10个字符" maxlength="10">
             </div>
             <div class="item">
-              <span class="text">奖项总数：</span>
+              <span class="text">奖品总数：</span>
               <input v-model="prize.count" placeholder="设置奖项总数量" type="number">
             </div>
             <div class="item">
