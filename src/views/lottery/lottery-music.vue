@@ -5,22 +5,22 @@
       <div class="dropdown-content">
         <ul>
           <li>
-            <button id="setUserCount" @click="showUserCountDialog = true" style="background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">设置人数</button>
+            <button id="resetAwards" @click="resetPrizeData">X 清空奖项</button>
           </li>
           <li>
-            <button id="resetAwards" @click="resetPrizeData" style="margin-right:10px;background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">清空奖项</button>
+            <button id="setUserCount" @click="showUserCountDialog = true">+ 设置人数</button>
           </li>
           <li>
-            <button id="add" @click="changeShowDialog" style="background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">添加奖项</button>
+            <button id="add" @click="changeShowDialog">+ 添加奖项</button>
           </li>
           <li>
-            <button id="tableShow" @click="tableShow" style="#3d3d34;background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">展示全部</button>
+            <button id="tableShow" @click="tableShow">● 展示全部</button>
           </li>
           <li>
-            <button id="winShow" @click="showAllWinUserPanel = true" style="#3d3d34;background-color:#3d3d34;color:#fff;border-bottom: 1px solid #fff;">展示中奖</button>
+            <button id="winShow" @click="showAllWinUserPanel = true">● 展示中奖</button>
           </li>
           <li>
-            <button id="resetData" @click="resetData" style="background-color:#3d3d34;color:#fff; solid #fff;">重置数据</button>
+            <button id="resetData" @click="resetData">X 重置数据</button>
           </li>
         </ul>
       </div>
@@ -35,7 +35,7 @@
           <div class="form">
             <div class="item">
               <span class="text">总人数：</span>
-              <span style="color: #666;">{{ totalUsersCount }} （默认上限人数600人，如有需求请联系管理员）</span>
+              <span style="color: #666;">{{ totalUsersCount }} （默认上限600人，如有需求，请联系。）</span>
             </div>
             <div class="item">
               <span class="text">设置人数：</span>
@@ -127,19 +127,55 @@
   right: 65px;
   z-index: 5;
   user-select: none;
-  // position: relative;
   display: inline-block;
+}
+
+.lottery-setting:hover .dropdown-content {
+  display: block;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  min-width: 160px;
+  min-width: 100px;
+  width: 90px; /* 固定宽度，确保统一 */
   z-index: 1;
+  background-color: #3d3d34; /* 添加背景色 */
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-.lottery-setting:hover .dropdown-content {
-  display: block;
+.dropdown-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-content li {
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-content button {
+  width: 100%; /* 按钮宽度100%继承父元素 */
+  padding: 8px 12px;
+  background-color: #3d3d34;
+  color: #fff;
+  border: none;
+  border-bottom: 1px solid #fff;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 0 !important; /* 移除所有按钮的右边距 */
+  box-sizing: border-box;
+}
+
+.dropdown-content button:last-child {
+  border-bottom: none; /* 最后一个按钮没有底边框 */
+}
+
+.dropdown-content button:hover {
+  background-color: #555;
 }
 
 .music-item {
