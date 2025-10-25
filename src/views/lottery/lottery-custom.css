@@ -9,7 +9,7 @@
 .element.prize.prize {
   transition: background-color 1.5s ease-in 0.3s;
   background-color: #3b3b34!important;
-  box-shadow: 0 0 12px rgb(37, 37, 36);
+  box-shadow: 0 0 12px rgb(255, 255, 0);
 }
 .element.prize .symbol {
   text-shadow: none;
