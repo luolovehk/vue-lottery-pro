@@ -27,6 +27,7 @@
     </div>
     
     <!-- 添加设置人数的对话框 -->
+    <!-- 在 template 部分修改设置人数的对话框 -->
     <div>
       <div class="global-mask" v-show="showUserCountDialog"></div>
       <div class="global-dialog" v-show="showUserCountDialog">
@@ -40,6 +41,13 @@
             <div class="item">
               <span class="text">设置人数：</span>
               <input v-model="customUserCount" placeholder="输入要设置的人数" type="number" min="1" :max="totalUsersCount">
+            </div>
+            <div class="item checkbox-item">
+              <span class="text">特殊设置：</span>
+              <div class="checkbox-wrapper">
+                <input type="checkbox" id="useNo4Numbers" v-model="useNo4Numbers" class="custom-checkbox">
+                <label for="useNo4Numbers" class="checkbox-label">使用不含数字4的号码</label>
+              </div>
             </div>
           </div>
         </div>
@@ -230,11 +238,35 @@
         margin-bottom: 1rem;
         line-height: 40px;
         input {
-          width: 520px;
+          width: 300px; // 调整为更合适的宽度
           height: 40px;
           border: 1px solid #eaeaea;
           border-radius: 10px;
           padding: 0 20px;
+          box-sizing: border-box; // 确保padding不会增加总宽度
+        }
+        // 添加复选框对齐修复
+        &.checkbox-item {
+          .text {
+            flex-shrink: 0;
+            min-width: 80px;
+          }
+          .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+          }
+          .custom-checkbox {
+            margin: 0;
+            width: auto;
+            height: auto;
+            vertical-align: middle;
+          }
+          .checkbox-label {
+            margin-left: 8px;
+            vertical-align: middle;
+            line-height: 1.2;
+          }
         }
       }
     }
@@ -390,6 +422,7 @@ import { totalUsersCount } from './lottery-config-users.js'; // 导入总人数
   showUserCountDialog = false;
   customUserCount: number | null = null;
   totalUsersCount = totalUsersCount;
+  useNo4Numbers = false;
   
   musicInit() {
     const music: any = document.querySelector("#music");
@@ -558,6 +591,7 @@ import { totalUsersCount } from './lottery-config-users.js'; // 导入总人数
   confirmUserCount() {
     if (this.customUserCount && this.customUserCount > 0 && this.customUserCount <= this.totalUsersCount) {
       sessionStorage.setItem('customUserCount', this.customUserCount.toString());
+      sessionStorage.setItem('useNo4Numbers', this.useNo4Numbers.toString());
       // 移除手动刷新提示，添加自动刷新
       location.reload();
       this.showUserCountDialog = false;
@@ -576,14 +610,17 @@ import { totalUsersCount } from './lottery-config-users.js'; // 导入总人数
   
   created () {
     window.addEventListener('resize', this.listenResize)
-    // 初始化自定义人数
+    // 初始化自定义人数和无4号码设置
     const savedCount = sessionStorage.getItem('customUserCount');
     if (savedCount) {
       this.customUserCount = parseInt(savedCount, 10);
     }
+    const useNo4 = sessionStorage.getItem('useNo4Numbers');
+    if (useNo4) {
+      this.useNo4Numbers = useNo4 === 'true';
+    }
   }
-  beforeDestroy () {
-    window.removeEventListener('resize', this.listenResize)
-  }
+  
+  // ... 其余代码保持不变 ...
 }
 </script>
