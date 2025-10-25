@@ -20,9 +20,9 @@
   align-items: center;
   border-radius: 4px;
   flex-wrap: nowrap;
-  background-color: rgba(0, 92, 175, 0.37);
-  border: 1px solid rgba(127, 255, 255, 0.25);
-  color: rgba(25, 144, 255, 0.75);
+  background-color: rgba(59, 59, 52, 0.5);
+  border: 1px solid #ffd000;
+  color: #ffd000;
   width: 80%;
   height: 80px;
   box-sizing: border-box;
@@ -140,7 +140,7 @@
   &.shine {
     opacity: 1;
     margin-bottom: 5px;
-    box-shadow: rgb(192, 196, 204) 0px 0px 10px 0px;
+    box-shadow: rgb(255, 255, 0) 0px 0px 10px 0px;
     transform: scale(1.1);
     transform-origin: left center;
     position: relative;

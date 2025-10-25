@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="lottery-setting">
-      <button>更多</button>
+      <button>设置</button>
       <div class="dropdown-content">
         <ul>
           <li>

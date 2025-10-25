@@ -4,7 +4,7 @@
       <ul class="prize-list">
         <li class="prize-item"
           v-for="(item, index) in prizeList" :key="index"
-          style="color: #ffd000;background-color: #3b3b34;"
+          
           :class="{shine: index === currentPrizeIndex, done: index === donePrizeIndex}"
           @click="selectPrize($event, item, index)">
           <div class="prize-item-left" v-if="isShowDetail || item.isShowTime">
