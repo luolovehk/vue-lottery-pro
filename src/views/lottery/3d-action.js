@@ -20,10 +20,16 @@ function cardFlyAnimation(cardIndexList) {
       colNum = 3;
     } else if (objectLength <= 20) {
       colNum = 5;
-    } else if (objectLength > 50) {
-      colNum = 15;
-    } else {
+    } else if (objectLength <= 50) {
       colNum = 10;
+    } else if (objectLength <= 100) {
+      colNum = 15;
+    } else if (objectLength <= 200) {
+      colNum = 20;
+    } else if (objectLength > 200 && objectLength <= 300) {
+      colNum = 25;
+    } else {
+      colNum = 30;
     }
     
     const selectRowCount = Math.ceil(objectLength / colNum);
