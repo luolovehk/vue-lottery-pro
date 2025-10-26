@@ -20,6 +20,9 @@
             <button id="winShow" @click="showAllWinUserPanel = true">● 展示中奖</button>
           </li>
           <li>
+            <button id="printTickets" @click="goToPrintPage">● 制作奖券</button>
+          </li>
+          <li>
             <button id="resetData" @click="resetData">X 重置数据</button>
           </li>
         </ul>
@@ -43,11 +46,11 @@
               <input v-model="customUserCount" placeholder="输入要设置的人数" type="number" min="1" :max="totalUsersCount">
             </div>
             <div class="item checkbox-item">
-              <span class="text">特殊设置：</span>
+<span class="text">特殊设置：</span>
               <div class="checkbox-wrapper">
                 <input type="checkbox" id="useNo4Numbers" v-model="useNo4Numbers" class="custom-checkbox">
                 <label for="useNo4Numbers" class="checkbox-label">使用不含数字4的号码</label>
-              </div>
+</div>
             </div>
           </div>
         </div>
@@ -291,7 +294,7 @@
   }
 }
 .show-all-win-user {
-  position: fixed;
+position: fixed;
   width: calc(100vw - 60px);
   height: calc(100vh - 130px);
   left: 30px;
@@ -303,9 +306,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  border: 1px solid rgba(255,255,251, 0.6);
+border: 1px solid rgba(255,255,251, 0.6);
   color: #fff;
-  .close-btn {
+.close-btn {
     position: absolute;
     right: 10px;
     top: 10px;
@@ -330,7 +333,7 @@
       margin-bottom: 12px;
     }
     .prize-win-user {
-      margin: 26px 0px;
+margin: 26px 0px;
       .prize-win-user-name {
         font-size: 38px;
         color: #ffd000;
@@ -352,6 +355,8 @@ import { transform } from './3d-animate.js';
 import lotteryConfig from './lottery-config.js';
 import { Component, Vue } from "vue-property-decorator";
 import { totalUsersCount } from './lottery-config-users.js'; // 导入总人数
+// 添加Vue Router导入以便使用路由跳转
+// 删除未使用的router导入
 
 @Component({
   components: {}
@@ -573,54 +578,60 @@ import { totalUsersCount } from './lottery-config-users.js'; // 导入总人数
     lotteryConfig.setLocalStorage(); 
   }
 
-  getRenderArr(arr) {
-    const arrRes = [];
-    const n = 15;
-    const len = arr.length;
-    const lineNum = len % n === 0 ? len / n : Math.floor( (len / n) + 1 );
-    for (let i = 0; i < lineNum; i++) {
-      const temp = arr.slice(i*n, i*n+n);
-      arrRes.push(JSON.parse(JSON.stringify(temp)));
-    }
-    return arrRes;
-  }
-
-  mounted () {
-    this.musicInit();
-  }
-  confirmUserCount() {
-    if (this.customUserCount && this.customUserCount > 0 && this.customUserCount <= this.totalUsersCount) {
-      sessionStorage.setItem('customUserCount', this.customUserCount.toString());
-      sessionStorage.setItem('useNo4Numbers', this.useNo4Numbers.toString());
-      // 移除手动刷新提示，添加自动刷新
-      location.reload();
-      this.showUserCountDialog = false;
-    } else {
-      alert(`请输入1-${this.totalUsersCount}之间的数字`);
-    }
-  }
+  // 修复script标签结构，确保所有方法正确缩进并删除重复的闭合标签
   
-  // 重置人数设置
-  resetUserCount() {
-    if (confirm('是否要重置参与人数设置？')) {
-      sessionStorage.removeItem('customUserCount');
-      location.reload();
+    getRenderArr(arr) {
+      const arrRes = [];
+      const n = 15;
+      const len = arr.length;
+      const lineNum = len % n === 0 ? len / n : Math.floor( (len / n) + 1 );
+      for (let i = 0; i < lineNum; i++) {
+        const temp = arr.slice(i*n, i*n+n);
+        arrRes.push(JSON.parse(JSON.stringify(temp)));
+      }
+      return arrRes;
+    }
+  
+    // 添加跳转到打印页面的方法
+    goToPrintPage() {
+      window.open('/print', '_blank');
+    }
+  
+    mounted () {
+      this.musicInit();
+    }
+    
+    confirmUserCount() {
+      if (this.customUserCount && this.customUserCount > 0 && this.customUserCount <= this.totalUsersCount) {
+        sessionStorage.setItem('customUserCount', this.customUserCount.toString());
+        sessionStorage.setItem('useNo4Numbers', this.useNo4Numbers.toString());
+        // 移除手动刷新提示，添加自动刷新
+        location.reload();
+        this.showUserCountDialog = false;
+      } else {
+        alert(`请输入1-${this.totalUsersCount}之间的数字`);
+      }
+    }
+    
+    // 重置人数设置
+    resetUserCount() {
+      if (confirm('是否要重置参与人数设置？')) {
+        sessionStorage.removeItem('customUserCount');
+        location.reload();
+      }
+    }
+    
+    created () {
+      window.addEventListener('resize', this.listenResize)
+      // 初始化自定义人数和无4号码设置
+      const savedCount = sessionStorage.getItem('customUserCount');
+      if (savedCount) {
+        this.customUserCount = parseInt(savedCount, 10);
+      }
+      const useNo4 = sessionStorage.getItem('useNo4Numbers');
+      if (useNo4) {
+        this.useNo4Numbers = useNo4 === 'true';
+      }
     }
   }
-  
-  created () {
-    window.addEventListener('resize', this.listenResize)
-    // 初始化自定义人数和无4号码设置
-    const savedCount = sessionStorage.getItem('customUserCount');
-    if (savedCount) {
-      this.customUserCount = parseInt(savedCount, 10);
-    }
-    const useNo4 = sessionStorage.getItem('useNo4Numbers');
-    if (useNo4) {
-      this.useNo4Numbers = useNo4 === 'true';
-    }
-  }
-  
-  // ... 其余代码保持不变 ...
-}
 </script>

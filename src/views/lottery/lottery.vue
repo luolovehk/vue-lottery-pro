@@ -11,6 +11,7 @@
       <Prize/>
       <Lottery3d/>
     </div>
+    <!-- 移除打印页面链接 -->
   </div>
 </template>
 
@@ -57,7 +58,6 @@ export default class Lottery extends Vue {
   //position: fixed;
 }
 .lottery-content {
-  flex: 1;
   display: flex;
 }
 </style>

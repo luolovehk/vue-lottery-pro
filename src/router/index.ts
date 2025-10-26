@@ -1,29 +1,34 @@
-import Vue from 'vue'
-// eslint-disable-next-line no-unused-vars
-import VueRouter, { RouteConfig } from 'vue-router'
+import Vue from 'vue';
+// 删除未使用的RouteConfig导入
+import VueRouter from 'vue-router';
+import Lottery from '../views/lottery/lottery.vue';
+import LotteryPrint from '../views/lottery/lottery-print.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-const routes: Array<RouteConfig> = [
+const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "lottery" */ "../views/lottery/lottery.vue")
+    component: Lottery
   },
   {
-    path: "/vue-lottery-pro",
-    name: "vue-lottery-pro",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "lottery-pro" */ "../views/lottery/lottery.vue")
+    path: '/vue-lottery-pro',
+    name: 'Lottery',
+    component: Lottery
+  },
+  {
+    path: '/print',
+    name: 'LotteryPrint',
+    component: LotteryPrint
   }
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;
+export { router };
