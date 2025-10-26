@@ -26,6 +26,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   font-family:  "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", -apple-system-font, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", Arial, sans-serif;
 }
+body {
+  font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", Arial, sans-serif !important;
+}
 html, body {
   height: 100%;
   width: 100%;
