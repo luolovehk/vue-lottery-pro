@@ -262,7 +262,7 @@ button.active {
   font-family: 'Arial Black', 'Microsoft YaHei', sans-serif;
 }
 
-.ticket-name[data-v-ad9b288e] {
+.ticket-name {
   font-size: 12px;
   color: #161616;
   text-align: center;
