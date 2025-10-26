@@ -38,6 +38,7 @@ Vue Lottery Pro是一个功能丰富、界面精美的抽奖系统，基于原`l
 - **动画效果**：CSS动画、自定义动画函数
 
 ## 项目结构
+```bash
 vue-lottery-pro/
 ├── public/                # 静态资源目录
 │   ├── index.html         # HTML入口文件
@@ -57,7 +58,7 @@ vue-lottery-pro/
 │   └── main.ts            # 应用入口文件
 ├── vue.config.js          # Vue CLI配置
 └── package.json           # 项目依赖配置
-
+```
 
 ## 安装与运行
 
