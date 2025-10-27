@@ -7,7 +7,7 @@
           600名普通号码
         </button>
         <button @click="switchMode('no4')" :class="{ active: currentMode === 'no4' }">
-          600名不含数字4的号码
+          600名不含4的号码
         </button>
         <button @click="printPage" class="print-btn">打印抽奖券</button>
       </div>
@@ -20,7 +20,7 @@
           v-model="customTicketName" 
           type="text" 
           placeholder="请输入抽奖券名称"
-          style="padding: 5px 10px; border-radius: 4px; border: 1px solid #ddd;"
+          style="width: 250px; padding: 5px 10px; border-radius: 4px; border: 1px solid #ddd;"
         >
       </div>
     </div>
@@ -142,7 +142,7 @@ export default class LotteryPrint extends Vue {
 }
 
 button {
-  margin: 0 10px;
+  margin: 5px 10px;
   padding: 8px 16px;
   border: 1px solid #ddd;
   background-color: white;
@@ -156,22 +156,21 @@ button:hover {
 }
 
 button.active {
-  background-color: #42b983;
-  color: white;
-  border-color: #42b983;
-}
-
-.print-btn {
   background-color: #007bff;
   color: white;
   border-color: #007bff;
+}
+
+.print-btn {
+  background-color: #b90000;
+  color: white;
+  border-color: #b90000;
   font-weight: bold;
 }
-
 .print-btn:hover {
-  background-color: #0056b3;
+  background-color: #940000;
+  color: white;
 }
-
 /* A4纸容器样式 */
 .a4-container {
   width: 210mm;
