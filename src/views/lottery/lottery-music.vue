@@ -34,16 +34,16 @@
     <div>
       <div class="global-mask" v-show="showUserCountDialog"></div>
       <div class="global-dialog" v-show="showUserCountDialog">
-        <div class="title">设置参与人数</div>
+        <div class="title">设置参与总人数</div>
         <div class="content">
           <div class="form">
             <div class="item">
-              <span class="text">总人数：</span>
-              <span style="color: #666;">{{ totalUsersCount }} （默认上限600人，如有需求，请联系。）</span>
+              <span class="text">总人数上限：</span>
+              <span style="color: #000000;">{{ totalUsersCount }} （如有更大需求，请联系。）</span>
             </div>
             <div class="item">
               <span class="text">设置人数：</span>
-              <input v-model="customUserCount" placeholder="输入要设置的人数" type="number" min="1" :max="totalUsersCount">
+              <input v-model="customUserCount" placeholder="设置参与的总人数" type="number" min="1" :max="totalUsersCount">
             </div>
             <div class="item checkbox-item">
 <span class="text">特殊设置：</span>
@@ -222,6 +222,7 @@
   background: #FFFFFF;
   border-radius: 15px;
   overflow: hidden;
+  font-size: 16px;
   .title {
     font-size: 2rem;
     font-weight: 600;
@@ -231,10 +232,11 @@
   .content {
     .text {
       font-size: 1rem;
+      font-weight: 600;
       text-align: center;
     }
     .form {
-      padding: 0 1rem;
+      padding: 0 4rem;
       .item {
         display: flex;
         align-items: center;
@@ -243,6 +245,7 @@
         input {
           width: 300px; // 调整为更合适的宽度
           height: 40px;
+          font-size: 16px;
           border: 1px solid #eaeaea;
           border-radius: 10px;
           padding: 0 20px;
@@ -296,7 +299,7 @@
 .show-all-win-user {
 position: fixed;
   width: calc(100vw - 60px);
-  height: calc(100vh - 130px);
+  height: calc(100vh - 110px);
   left: 30px;
   top: calc(50px + 30px);
   border-radius: 10px;
